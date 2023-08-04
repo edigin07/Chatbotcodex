@@ -1,0 +1,356 @@
+/* Import Google font -Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box; 
+    /* box-sizing = Mit dem box-sizing können wir den Abstand und den Rand in die Gesamtbreite und -höhe eines Elements einbeziehen */
+    font-family: "Poppins", sans-serif; /* Schriftart für ein Element */
+}
+
+body {
+    background: #E3F2FD;
+}
+
+.chatbot-toggler { /* Kommentar und Close Klasse */
+    position: fixed;
+    right:40px;
+    bottom: 35px;
+    height: 50px;
+    width: 50px;
+    color:#fff;
+    background: #724ae8;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* align-items = Steuert es die vertikale Ausrichtung von Elementen */
+    justify-content: center; /*justify-content = Es definiert die horizontale Ausrichtung entlang der Hauptachse */
+}
+
+.chatbot-toggler span{ /* Span Klasse vom Kommentar und Close  */
+    position: absolute; /* position = Eigenschaft gibt die Art der Positionierungsmethode an, die für ein Element verwendet wird */
+    
+    /* relative = Das Element wird entsprechend dem normalen Fluss des Dokuments positioniert und dann relativ zu sich selbst 
+    basierend auf den Werten von top, right, bottom und left versetzt werden*/
+
+    /* absolute =  Das Element wird aus dem Elementfluss genommen und kann mit top/right/bottom/left völlig unabhängig 
+    auf dem Bildschirm positioniert werden */
+}
+
+.chatbot-toggler span:last-child { /* Betrifft nur die 2 span Klasse von chatbot-toggler */
+    opacity: 0; /* opacity = Eigenschaft gibt die Opazität/Transparenz eines Elements an. Je niedriger der Wert, desto transparenter */
+    /* opacityEigenschaft kann einen Wert zwischen 0,0 und 1,0 */
+    /* background-color: red; */
+}
+
+.show-chatbot .chatbot-toggler span:first-child{ /* Die Klasse betrifft das Kommentar Element */
+    opacity: 0; /* opacity = Eigenschaft gibt die Opazität/Transparenz eines Elements an. Je niedriger der Wert, desto transparenter */
+    /* opacityEigenschaft kann einen Wert zwischen 0,0 und 1,0 */
+}
+
+.show-chatbot .chatbot-toggler span:last-child { /* Die Klasse betrifft das Close Element */
+    opacity: 1; /* opacity = Eigenschaft gibt die Opazität/Transparenz eines Elements an. Je niedriger der Wert, desto transparenter */
+    /* opacityEigenschaft kann einen Wert zwischen 0,0 und 1,0 */
+    /* background-color: red; */
+}
+
+.chatbot { /* Ganze Chat Klasse ohne Header (Kopfzeile) bis ganz nach unten mit Textarea Zeile*/
+position: fixed;
+right: 40px;
+bottom: 100px;
+width: 420px;
+background: #fff;
+border-radius: 15px; /* Rundet die Ränder ab, um so mehr Pixel man hat */
+overflow: hidden; /* overflow = Eigenschaft steuert, was mit Inhalten geschieht, die zu groß sind, um in einen Bereich zu passen */
+/* visible = Der Inhalt wird außerhalb der Box des Elements gerendert */
+/* hidden = Der Überlauf wird abgeschnitten und der Rest des Inhalts ist unsichtbar */
+opacity: 0;  
+pointer-events: none; /* pointer-events = Eigenschaft definiert, ob ein Element auf Zeigerereignisse reagiert oder nicht */
+transform: scale(0.5); /* scale = definiert eine Transformation, die die Größe eines Elements auf der 2D-Ebene ändert */
+/* transform-origin: bottom right;  */
+box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
+/* transition: all 0.1s ease;  */
+/* background-color: red;  */
+}
+
+.show-chatbot .chatbot{
+    opacity: 1;  
+    pointer-events: auto;  /*   pointer-events = Eigenschaft definiert, ob ein Element auf Zeigerereignisse reagiert oder nicht*/
+    /* pointer-events: auto = stellt das Standardverhalten wieder her. Das Element verhält sich so, als ob die pointer-eventsEigenschaft 
+    nicht angegeben wäre */
+    transform: scale(1); 
+    top: 20px;
+}
+
+.chatbot header { /* Nur die ganze Header Klasse (Kopfzeile) */
+padding: 16px 0;
+position: relative; /* relative = Ändert die Position des Elements relativ zum übergeordneten Element und relativ zu sich selbst */
+text-align: center;
+/* color: #fff; */
+background: #724ae8;
+/* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+}
+
+.chatbot header h2 { /* Header h2 Inhalt */
+font-size: 1.4rem;
+color: #fff;
+/* background-color: red; */
+}
+
+.chatbot header span{
+    position: absolute; /* Absolut positionierte Elemente werden vollständig aus dem regulären Fluss der Webseite herausgenommen */
+    right: 20px; /* right = Die rightEigenschaft beeinflusst die horizontale Position eines positionierten Elements */
+    top: 50%; /* top = topEigenschaft beeinflusst die vertikale Position eines positionierten Element */
+    color:#fff;
+    cursor: pointer;
+    transform: translateY(-50%); /* translateY = positioniert ein Element vertikal auf der 2D-Ebene neu */
+    display: none; /*  Das Close Button im Header sieht man mit none nicht mehr */
+}
+
+.chatbot .chatbox { /* Ganze Chat Klasse ohne Header (Kopfzeile) bis zur Textarea Zeile nur */
+overflow-y: auto; 
+/* overflow-y = Eigenschaft legt fest, was angezeigt wird, wenn Inhalt über die Ober- und Unterkante eines Elements 
+auf Blockebene hinausläuft */
+
+/* auto: Überlaufinhalte werden am Füllfeld des Elements abgeschnitten und Überlaufinhalte können durch Scrollen 
+in die Ansicht verschoben werden */
+height: 300px;
+padding: 15px 20px 100px; 
+/* padding = obere Polsterung beträgt 15 Pixel, rechte und linke Polsterung beträgt 20 Pixel, untere Polsterung beträgt 70 Pixel */
+
+/* background-color: red;   */
+list-style: none;
+}
+
+.chatbox .outgoing { /* Ganze Antwort Klasse */
+    justify-content: flex-end;
+    display: flex; /* flex = Das Element verhält sich wie ein Element auf Blockebene und legt seinen Inhalt gemäß dem Flexbox-Modell an */
+    /* margin: 20px 0;  */
+} 
+
+.outgoingtext{ /* Text p Klasse, bei der ich dem Bot antworte*/
+   /*  white-space: pre-wrap; */ /* white-space = Eigenschaft legt fest, wie Leerraum innerhalb eines Elements behandelt wird */
+    /*pre-wrap = Leerraumsequenzen bleiben erhalten. Zeilen werden an Zeilenumbrüchen, bei <br>und nach Bedarf umgebrochen, 
+    um Zeilenfelder zu füllen */
+    padding: 12px 16px; /* padding = obere und untere Polsterung beträgt 12 Pixel, rechte und linke Polsterung beträgt 16 Pixel */
+    color:#fff;
+    font-size: 16px;
+    border-radius: 10px 10px 0 10px;
+    background: #724ae8;
+    max-width: 75%;
+}
+
+.incomingtext { /* Text p Klasse, der vom Bot kommt */
+    color: #000; 
+    background: #f2f2f2;
+    border-radius: 10px 10px 10px 0;
+    white-space: pre-wrap;
+    /* border-radius = Der erste Wert gilt für die obere linke Ecke (10px), 
+    der zweite Wert gilt für die obere rechte Ecke (10px), 
+    der dritte Wert gilt für die untere rechte Ecke (10px), 
+    der vierte Wert gilt für die untere linke Ecke (0px) */
+    max-width: 75%;
+    display: inline-block; 
+    font-size: 16px;
+}  
+
+.chatbox .incoming .incomingtext {
+    /* color: #721c24; */
+    /* background: #f8d7da; */
+    border-radius: 10px 10px 10px 0;
+    white-space: pre-wrap;
+    /* border-radius = Der erste Wert gilt für die obere linke Ecke (10px), 
+    der zweite Wert gilt für die obere rechte Ecke (10px), 
+    der dritte Wert gilt für die untere rechte Ecke (10px), 
+    der vierte Wert gilt für die untere linke Ecke (0px) */
+    max-width: 75%;
+    display: inline-block; 
+    font-size: 16px;
+}
+
+p.incomingtext.error {
+    color: #721c24;
+    background: #f8d7da;
+}
+
+.chatbox .incoming span {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    /* cursor: default; */
+    text-align: center;
+    line-height: 32px; 
+    /* line-heigh = Legt die Höhe eines Linienfelds fest. Es wird häufig verwendet, um den Abstand zwischen Textzeilen festzulegen */
+    align-self: flex-end; 
+    /* align-self = Eigenschaft gibt die Ausrichtung in Blockrichtung für das ausgewählte Element innerhalb einer Flexbox 
+    oder eines Rastercontainers an */
+    background: #724ae8;
+    border-radius: 4px;
+    margin: 0 10px 7px 0;
+    /*  Der obere Rand beträgt 0 Pixel
+        Der rechte Rand beträgt 10 Pixel
+        Der untere Rand beträgt 7 Pixel
+        Der linke Rand beträgt 0 Pixel */
+}
+
+.chatbot .chat-input { /* Inputfeld Klasse unten (ganzer Container)*/
+    display: flex; 
+    /* gap: 5px; */ /* gap = Eigenschaft legt die Lücken ( Rinnen ) zwischen Zeilen und Spalten fest */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    padding: 5px 20px;
+    /*  padding = Die obere und untere Polsterung beträgt 5 Pixel
+                  Die rechte und linke Polsterung beträgt 20 Pixel */
+    border-top: 1px solid #ddd;
+   /*  color: red; */
+}
+
+.chat-input textarea {
+    height: 55px;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    max-height: 180px;
+    padding: 15px 15px 15px 0;
+    /* font-size: 0.95rem; */
+    font-size: 16px;
+}
+
+.chat-input span{ /* Span Klasse für den Send Button */
+    align-self: flex-end; 
+    height: 55px;
+    line-height: 55px;
+    color: #724ae8;
+    font-size: 1.35rem;
+    cursor: pointer;
+    visibility: hidden; /* Button ist versteckt bzw. nicht sichtbar */
+    /* background-color: red; */
+}
+
+.chat-input textarea:valid ~ span { /* Sobald etwas in den Input Feld geschrieben wird, erscheint der Send Button durch visible */
+    visibility: visible;
+}
+
+#outtextid {
+    color:#fff;
+    display:flex;
+    position:absolute;
+    align-items: flex-start;
+    justify-content: flex-start;
+   /*  word-wrap: break-word; */
+}
+
+button#buttonconvertid{
+    background-color:#9aa0a7;
+    padding: 3px;
+}
+button#buttonconvertid:hover{
+    background: #a4957d;
+}
+
+#formrowouter {
+    height: 47px;
+    border-radius: 5px;
+    /* border: 1px solid #999; */
+    align-items: center;
+    /* padding: 0 10px; */
+    padding-right: 140px;
+    /* margin-bottom: 10px; */
+    bottom: 20px;
+    /* left: 40%; */
+    right: 100px;
+    position: absolute;
+    display: none; 
+}
+
+#selectid{
+    font-size: 14px;
+    width: 220px;
+}
+
+#rate-control {
+    /* align-items: center;  */
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+    margin: 5px;
+}
+
+@media(max-width: 490px) {
+    .chatbot {
+        position: fixed;
+        /* right: 40px; */
+        /* left: 20px; */
+        bottom: 100px;
+        width: 80%;
+        /* height: 510px; */
+        border-radius: 0;
+    }
+
+    .chatbot .chatbox {
+        height: 80%;
+    }
+
+    .chatbot .chatbox { /* Ganze Chat Klasse ohne Header (Kopfzeile) bis zur Textarea Zeile nur */
+        overflow-y: auto; 
+        /* overflow-y = Eigenschaft legt fest, was angezeigt wird, wenn Inhalt über die Ober- und Unterkante eines Elements 
+        auf Blockebene hinausläuft */
+        
+        /* auto: Überlaufinhalte werden am Füllfeld des Elements abgeschnitten und Überlaufinhalte können durch Scrollen 
+        in die Ansicht verschoben werden */
+        height: 300px;
+        /* padding: 15px 20px 100px;  */
+        /* padding = obere Polsterung beträgt 15 Pixel, rechte und linke Polsterung beträgt 20 Pixel, untere Polsterung beträgt 70 Pixel */
+        padding-bottom: 100px;
+        /* background-color: red;   */
+        list-style: none;
+    }
+
+    /* .chatbot header span{
+        display: block;
+    } */
+
+    #formrowouter {
+    /* background-color: red;  */
+    position: absolute;
+    bottom: 25px; 
+    /* right: 100%; *
+    /* color: green; */
+    padding-right: 30px;
+    /* margin-right: 50%; */
+    /* width: 80%; */
+    /* display: none; */
+    }
+      
+    #selectid{
+        font-size: 14px;
+        /* color:green; */
+        width: 200px;
+    }
+
+    #rate-control {
+        /* align-items: center;  */
+        justify-content: center;
+        display: flex;
+        gap: 1rem;
+        margin: 5px;
+    }
+}
+
+
+/* position: fixed;
+right: 40px;
+bottom: 100px;
+width: 420px;
+background: #fff;
+border-radius: 15px; 
+overflow: hidden; */
+
+
+
+  

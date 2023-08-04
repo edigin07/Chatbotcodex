@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de" translate="yes">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Chatbot in JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <!-- Aus Google Fonts : https://fonts.google.com/specimen/Poppins -->
+        <script src="script.js" defer></script>
+        <!-- defer = Das defer-Attribut legt fest, dass das Script asynchron geladen und erst dann ausgeführt werden soll, 
+            wenn die Seite vollständig geparst ist -->
+    </head>
+
+    <body> <!-- body = class="show-chatbot" (Klassenname hab ich weggelassen, da ich den im script.js hinzufüge) -->
+        <!-- <div class="outer" id="formrowouter">
+            <select id="selectid">
+                <option value="">Google Deutsch (de-DE)</option>
+                <option value="">Google US English (en-US)</option>
+                <option value="">Google UK English Male (en-GB)</option>
+                <option value="">Google  UK English Female (en-GB)</option> 
+            </select>
+        </div> -->
+        <button id="chattogglerid" class="chatbot-toggler" onclick="show_chatbot()">
+            <span class="material-symbols-outlined" id="commentspanid">mode_comment</span>
+            <span class="material-symbols-outlined" id="closespanid">close</span>
+            <!-- <span id="buttonid">Convert to Speech</span> -->
+        
+        </button>
+        <div class="outer" id="formrowouter">
+            <select id="selectid">
+                <!-- <option value="">Google Deutsch (de-DE)</option>
+                <option value="">Google US English (en-US)</option>
+                <option value="">Google UK English Male (en-GB)</option>
+                <option value="">Google  UK English Female (en-GB)</option>  -->
+            </select>
+        </div>
+        <!-- <button id="buttonconvertid">Convert to Speech</button> -->
+        <div id="chatbotid" class="chatbot">
+            <header>
+                <h2>Chatbot</h2>
+                <div id="rate-control">
+                    <!-- <label for="rate">Tempo:</label> -->
+                    <input type="range" min="0.5" max="4" value="1" step="0.1" id="rate" />
+                  </div>
+                <button id="buttonconvertid" onclick="speechmemo()">Sprachausgabe</button>
+                <!-- <span class="close-btn material-symbols-outlined">close</span> -->
+                <span class="material-symbols-rounded" id="symbolcomment">mode_comment</span>
+                <span class="material-symbols-outlined" id="symbolclose">close</span>
+            </header>
+            <ul class="chatbox" id="chatboxid"> <!-- Oberste Klasse mit Text "Hi, Hallo wie kann ich dir helfen?" -->
+                <!-- <li class="chat incoming"> -->
+                <li class="incoming">   <!--  Oberste Klasse mit Text "Hi, Hallo wie kann ich dir helfen?" Erste Frage vom Bot -->
+                    <span class="material-symbols-outlined">smart_toy</span> <!-- Roboter Symbol -->
+                    <p class="incomingtext" id="incomingtextid">Hi 👋<br>Hallo wie kann ich dir helfen?</p>
+                </li>
+                <!-- <li class="chat outgoing"></li> -->
+
+                <!-- <li class="outgoing">  
+                    <p class="outgoingtext">Lorem ipsum dolor sit amet consectetur</p>
+                    <p id="outtextid"></p> 
+                </li> -->
+                <!--  <class="outgoing"> Erklärung = Mein Text. den ich antworte (Zeile nur als Erklärung) -->
+                    <!-- class="outgoing wird durch classList.add im script.js erstellt" -->
+            </ul>
+            <div class="chat-input" oninput="inputfield()">
+                <textarea id="textarea" placeholder="Schreibe eine Nachricht..." required></textarea> 
+                <!-- required Attribut gibt, sofern vorhanden, an, dass der Benutzer einen Wert für die Eingabe angeben muss, 
+                    bevor das besitzende Formular gesendet werden kann -->
+                <span onclick="sendinput()" id="send-btn" class="material-symbols-outlined">send</span> 
+                <!-- <span id="send-btn" class="material-symbols-outlined">send</span> -->
+                <p id="textdemo"></p>
+            </div>
+        </div>
+        
+        <!-- <button id="buttonconvertid">Convert to Speech</button> -->
+
+        <!-- <div class="chatbot">
+            <header>
+                <h2>Chatbot</h2>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming"></li>
+                    <span class="material-symbols-outlined">smart_toy</span>
+                    <p>Hallo ich bin hier 👋 <br> Wie kann ich dir heute helfen?</p>
+                </li>
+                <li class="chat outgoing"></li>
+                    <p>Lorem ipsum dolor sit</p>
+                </li>
+            </ul>   
+            <div class="chat-input">
+                <textarea placeholder="Enter a message..."></textarea>
+                <span id="send-btn" class="material-symbols-outlined">send</span>
+            </div>  
+        </div> -->
+    </body>
+</html>
